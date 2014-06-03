@@ -1,0 +1,6 @@
+#!/bin/sh
+
+mkdir -p $CATALINA_HOME/webapps/bugfree-avenger
+
+cp -r src/main/webapp/* $CATALINA_HOME/webapps/bugfree-avenger/
+cp -r target/classes $CATALINA_HOME/webapps/bugfree-avenger/WEB-INF/
