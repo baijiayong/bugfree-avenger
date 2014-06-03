@@ -5,9 +5,17 @@
          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0"
          metadata-complete="true">
-<display-name>Hello World</display-name> 
+    <display-name>Hello World</display-name> 
 
-<description>
-     Welcome to my project
-</description>
+    <description>
+        Welcome to my project
+    </description>
+    <servlet>
+        <servlet-name>orderfood</servlet-name>
+        <servlet-class>com.baldurtech.Order</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>orderfood</servlet-name>
+        <url-pattern>/order</url-pattern>
+    </servlet-mapping>
 </web-app>
