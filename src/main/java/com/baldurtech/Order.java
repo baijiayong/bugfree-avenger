@@ -1,6 +1,7 @@
 package com.baldurtech;
 
 import javax.servlet.ServletException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +26,12 @@ public class Order extends HttpServlet
         {
             resp.setCharacterEncoding("UTF-8");
             resp.setContentType("text/html");
-            resp.getWriter().println("注册成功");
+            forward(req,resp,"register");
         }
+    }
+    public void forward(HttpServletRequest req, HttpServletResponse resp, String page) throws ServletException, IOException
+    {
+        String jsp = "/WEB-INF/order/" + page + ".jsp";
+        getServletContext().getRequestDispatcher(jsp).forward(req,resp);
     }
 }
