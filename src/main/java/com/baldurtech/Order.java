@@ -15,6 +15,9 @@ public class Order extends HttpServlet
     }
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
+        String username = req.getParameter("user_name");
+        String password = req.getParameter("pass_word");
         
+        resp.getWriter().println("Username:" + username + " " + "Password:" + password);
     }
 }
