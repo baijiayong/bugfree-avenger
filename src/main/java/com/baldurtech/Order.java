@@ -14,9 +14,16 @@ public class Order extends HttpServlet
 {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
+        String action = req.getParameter("action");
+        
         HttpSession session = req.getSession();
         session.getAttribute("memberId");
-        resp.getWriter().println("This is my first order_food system.");
+       
+        if("logout".equalsIgnoreCase(action))
+        {
+            session = req.getSession();
+            session.removeAttribute("memberId");
+        }
     }
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
@@ -24,9 +31,12 @@ public class Order extends HttpServlet
         String password = req.getParameter("pass_word");
         String action = req.getParameter("action");
         
+        HttpSession session = req.getSession();
+        Long memberId = (Long)session.getAttribute("memberId");
+        
         if("admin".equals(username) && "123".equals(password))
         {
-            HttpSession session = req.getSession();
+            
             session.setAttribute("memberId",0L);
             forward(req,resp,"loginSuccess");
         }  
