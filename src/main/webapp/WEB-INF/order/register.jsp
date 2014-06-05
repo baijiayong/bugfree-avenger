@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>Order-Food System</title>
+    <title>register</title>
 
     <!-- Bootstrap core CSS -->
     <link href="lib/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -42,9 +42,9 @@
         <input type="text" class="form-control" placeholder="Email" name="email" required>
         <input type="text" class="form-control" placeholder="Telephone" name="telephone" required>
         <input type="text" class="form-control" placeholder="Address" name="address" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="action" value="login">Login</button>
-      </form>
-      
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="action" value="doRegister">Register</button>  
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="action" value="cancel">Cancel</button>
+     </form>
     </div> <!-- /container -->
 
 
