@@ -18,6 +18,7 @@ public class Order extends HttpServlet
     }
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
+        Member member = new Member();
         String action = req.getParameter("action");
         String username = req.getParameter("user_name");
         String password = req.getParameter("pass_word");
@@ -27,10 +28,25 @@ public class Order extends HttpServlet
         String address = req.getParameter("address");
 
         if("register".equalsIgnoreCase(action))
-        {
+        {   
             resp.setCharacterEncoding("UTF-8");
             resp.setContentType("text/html");
             forward(req,resp,"register");
+        }
+        if("doRegister".equalsIgnoreCase(action))
+        {
+            member.setUsername(username);
+            member.setPassword(password);
+            member.setSex(sex);
+            member.setEmail(email);
+            member.setTelephone(telephone);
+            member.setAddress(address);
+            resp.getWriter().println(member.getUsername());
+            resp.getWriter().println(member.getPassword());
+            resp.getWriter().println(member.getSex());
+            resp.getWriter().println(member.getEmail());
+            resp.getWriter().println(member.getTelephone());
+            resp.getWriter().println(member.getAddress());
         }
     }
     public void forward(HttpServletRequest req, HttpServletResponse resp, String page) throws ServletException, IOException
