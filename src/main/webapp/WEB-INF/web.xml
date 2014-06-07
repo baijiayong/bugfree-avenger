@@ -18,4 +18,20 @@
         <servlet-name>orderfood</servlet-name>
         <url-pattern>/order</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>auth</servlet-name>
+        <servlet-class>com.baldurtech.AuthLogin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>auth</servlet-name>
+        <url-pattern>/auth/login</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>auth</servlet-name>
+        <servlet-class>com.baldurtech.AuthLogin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>auth</servlet-name>
+        <url-pattern>/auth/logout</url-pattern>
+    </servlet-mapping>
 </web-app>
