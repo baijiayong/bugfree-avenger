@@ -14,32 +14,18 @@ public class Order extends HttpServlet
 {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
-        String action = req.getParameter("action");
-        
-        HttpSession session = req.getSession();
-        session.getAttribute("memberId");
        
-        if("logout".equalsIgnoreCase(action))
-        {
-            session = req.getSession();
-            session.removeAttribute("memberId");
-        }
     }
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
+        String action = req.getParameter("action");
         String username = req.getParameter("user_name");
         String password = req.getParameter("pass_word");
-        String action = req.getParameter("action");
-        
-        HttpSession session = req.getSession();
-        Long memberId = (Long)session.getAttribute("memberId");
-        
-        if("admin".equals(username) && "123".equals(password))
-        {
-            
-            session.setAttribute("memberId",0L);
-            forward(req,resp,"loginSuccess");
-        }  
+        String sex = req.getParameter("sex");
+        String email = req.getParameter("email");
+        String telephone = req.getParameter("telephone");
+        String address = req.getParameter("address");
+
         if("register".equalsIgnoreCase(action))
         {
             resp.setCharacterEncoding("UTF-8");
