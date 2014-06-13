@@ -35,18 +35,17 @@ public class Order extends HttpServlet
         }
         if("doRegister".equalsIgnoreCase(action))
         {
+           
+            MemberDao memberDao = new MemberDao();
             member.setUsername(username);
             member.setPassword(password);
             member.setSex(sex);
             member.setEmail(email);
             member.setTelephone(telephone);
             member.setAddress(address);
-            resp.getWriter().println(member.getUsername());
-            resp.getWriter().println(member.getPassword());
-            resp.getWriter().println(member.getSex());
-            resp.getWriter().println(member.getEmail());
-            resp.getWriter().println(member.getTelephone());
-            resp.getWriter().println(member.getAddress());
+            memberDao.addMember(member);
+            System.out.println(member.getUsername());
+            
         }
     }
     public void forward(HttpServletRequest req, HttpServletResponse resp, String page) throws ServletException, IOException
