@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class AuthLogin extends HttpServlet
 {
@@ -34,16 +36,30 @@ public class AuthLogin extends HttpServlet
     {
         String username = req.getParameter("user_name");
         String password = req.getParameter("pass_word");
-              
-        if("admin".equals(username) && "123".equals(password))
-        {   
-            HttpSession session = req.getSession();
-            session.setAttribute("memberId",0L);
-            forward(req,resp,"loginSuccess");
-        }else 
-        {
-            forward(req,resp,"loginFailed");
-        } 
+        
+        ResultSet rs = null;
+        try
+        {     
+            DatabaseManager databaseManager  = DatabaseManager.newInstance();
+            databaseManager.prepare("SELECT user_name,password FROM member_info WHERE user_name=? and password=?");
+            databaseManager.setString(username);
+            databaseManager.setString(password);
+            rs = databaseManager.executeQuery();
+            if(rs.next())
+            {   
+                HttpSession session = req.getSession();
+                session.setAttribute("memberId",0L);
+                forward(req,resp,"loginSuccess");
+            }else 
+            {
+                forward(req,resp,"loginFailed");
+            } 
+       }catch(SQLException ex)
+       {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Vendor: " + ex.getErrorCode());
+       }
     }
     public Boolean isNotLogin(HttpServletRequest req) throws ServletException, IOException
     {  
