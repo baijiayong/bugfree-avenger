@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 
 public class DatabaseManager
 {
@@ -61,5 +62,9 @@ public class DatabaseManager
     public Boolean execute() throws SQLException
     {
         return pstmt.execute();
+    }
+    public ResultSet executeQuery() throws SQLException
+    {
+        return pstmt.executeQuery();
     }
 }
