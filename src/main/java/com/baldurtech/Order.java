@@ -18,14 +18,7 @@ public class Order extends HttpServlet
     }
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
-        Member member = new Member();
         String action = req.getParameter("action");
-        String username = req.getParameter("user_name");
-        String password = req.getParameter("pass_word");
-        String sex = req.getParameter("sex");
-        String email = req.getParameter("email");
-        String telephone = req.getParameter("telephone");
-        String address = req.getParameter("address");
 
         if("register".equalsIgnoreCase(action))
         {   
@@ -33,17 +26,7 @@ public class Order extends HttpServlet
         }
         if("doRegister".equalsIgnoreCase(action))
         {
-           
-            MemberDao memberDao = new MemberDao();
-            member.setUsername(username);
-            member.setPassword(password);
-            member.setSex(sex);
-            member.setEmail(email);
-            member.setTelephone(telephone);
-            member.setAddress(address);
-            memberDao.addMember(member);
-            System.out.println(member.getUsername());
-            
+            doRegister(req,resp);
         }
     }
     public void forward(HttpServletRequest req, HttpServletResponse resp, String page) throws ServletException, IOException
@@ -56,5 +39,27 @@ public class Order extends HttpServlet
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html");
         forward(req,resp,"register");
+    }
+    public void doRegister(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    {
+        Member member = new Member();
+       
+        String username = req.getParameter("user_name");
+        String password = req.getParameter("pass_word");
+        String sex = req.getParameter("sex");
+        String email = req.getParameter("email");
+        String telephone = req.getParameter("telephone");
+        String address = req.getParameter("address");
+        
+        MemberDao memberDao = new MemberDao();
+        member.setUsername(username);
+        member.setPassword(password);
+        member.setSex(sex);
+        member.setEmail(email);
+        member.setTelephone(telephone);
+        member.setAddress(address);
+        memberDao.addMember(member);
+        System.out.println(member.getUsername());         
+        System.out.println(member.getUsername());         
     }
 }
