@@ -29,9 +29,7 @@ public class Order extends HttpServlet
 
         if("register".equalsIgnoreCase(action))
         {   
-            resp.setCharacterEncoding("UTF-8");
-            resp.setContentType("text/html");
-            forward(req,resp,"register");
+            register(req,resp);
         }
         if("doRegister".equalsIgnoreCase(action))
         {
@@ -52,5 +50,11 @@ public class Order extends HttpServlet
     {
         String jsp = "/WEB-INF/order/" + page + ".jsp";
         getServletContext().getRequestDispatcher(jsp).forward(req,resp);
+    }
+    public void register(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException
+    {
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html");
+        forward(req,resp,"register");
     }
 }
