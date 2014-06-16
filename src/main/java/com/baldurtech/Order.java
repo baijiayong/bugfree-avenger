@@ -59,7 +59,5 @@ public class Order extends HttpServlet
         member.setTelephone(telephone);
         member.setAddress(address);
         memberDao.addMember(member);
-        System.out.println(member.getUsername());         
-        System.out.println(member.getUsername());         
     }
 }

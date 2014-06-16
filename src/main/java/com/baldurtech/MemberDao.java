@@ -12,7 +12,6 @@ public class MemberDao
        
         try
         {
-            System.out.println(member.getUsername());
             DatabaseManager databaseManager = DatabaseManager.newInstance();
             databaseManager.prepare("INSERT INTO member_info(user_name,password,sex,email,telephone,address) VALUES (?,?,?,?,?,?)");
             databaseManager.setString(member.getUsername());
@@ -22,7 +21,6 @@ public class MemberDao
             databaseManager.setString(member.getTelephone());
             databaseManager.setString(member.getAddress());
             databaseManager.execute();
-            System.out.println(member.getUsername());
         }
         catch(SQLException ex) 
         {
