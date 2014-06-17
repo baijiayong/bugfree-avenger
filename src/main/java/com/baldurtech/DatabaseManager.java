@@ -5,12 +5,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.lang.AutoCloseable;
 
 public class DatabaseManager
 {
     private Integer paramIndex = null;
     public static PreparedStatement pstmt = null;
     public static Connection conn = null;
+    public static ResultSet rs = null;
     
     static final String jdbcUrl = "jdbc:mysql://localhost/test?" + "user=root" + "&password=";
     static final String jdbcDriver = "com.mysql.jdbc.Driver";
@@ -66,5 +68,29 @@ public class DatabaseManager
     public ResultSet executeQuery() throws SQLException
     {
         return pstmt.executeQuery();
+    }
+    public void close()
+    {
+        close(rs);
+        rs = null;
+        
+        close(pstmt);
+        pstmt = null;
+        
+        close(conn);
+        conn = null;
+    }
+    public void close(AutoCloseable obj) 
+    {   
+        if(obj != null)
+        {
+            try
+            {
+                obj.close();
+            }catch(Exception e)
+            {
+                //ignore;
+            }
+        } 
     }
 }
