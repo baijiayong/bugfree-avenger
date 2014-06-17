@@ -9,10 +9,10 @@ public class MemberDao
     
     public void addMember(Member member)
     {
-       
+        DatabaseManager databaseManager  = null;
         try
         {
-            DatabaseManager databaseManager = DatabaseManager.newInstance();
+            databaseManager = DatabaseManager.newInstance();
             databaseManager.prepare("INSERT INTO member_info(user_name,password,sex,email,telephone,address) VALUES (?,?,?,?,?,?)");
             databaseManager.setString(member.getUsername());
             databaseManager.setString(member.getPassword());
@@ -28,7 +28,13 @@ public class MemberDao
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("Vendor: " + ex.getErrorCode());
             System.out.println("Error");
+        }finally
+        {
+            databaseManager.close();
         }
     }
-    
+    public void showMember(Member member)
+    {
+     
+    }
 }
