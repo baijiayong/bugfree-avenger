@@ -8,13 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.ArrayList;
 
 
 public class Order extends HttpServlet
 {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
-       
+        String action = req.getParameter("action");
+        
+        if("List".equalsIgnoreCase(action))
+        {
+            list(req,resp);
+        }
     }
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
@@ -24,10 +31,11 @@ public class Order extends HttpServlet
         {   
             register(req,resp);
         }
-        if("doRegister".equalsIgnoreCase(action))
+        else if("doRegister".equalsIgnoreCase(action))
         {
             doRegister(req,resp);
         }
+
     }
     public void forward(HttpServletRequest req, HttpServletResponse resp, String page) throws ServletException, IOException
     {
@@ -59,5 +67,21 @@ public class Order extends HttpServlet
         member.setTelephone(telephone);
         member.setAddress(address);
         memberDao.addMember(member);
+    }
+    public void list(HttpServletRequest req, HttpServletResponse resp) throws ServletException , IOException
+    {
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html");
+        
+        MemberDao memberDao = new MemberDao();
+        
+        for(Member member : memberDao.showMember())
+        {
+            resp.getWriter().println(member.getId());
+            resp.getWriter().println(member.getUsername());
+            resp.getWriter().println(member.getTelephone());
+            resp.getWriter().println(member.getAddress());
+            resp.getWriter().println(member.getSex());
+        }
     }
 }
