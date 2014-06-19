@@ -3,6 +3,9 @@ package com.baldurtech;
 import java.sql.SQLException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MemberDao
 {
@@ -33,8 +36,41 @@ public class MemberDao
             databaseManager.close();
         }
     }
-    public void showMember(Member member)
+    public List<Member> showMember()
     {
-     
+        DatabaseManager databaseManager = null;
+        List<Member> memberList = new ArrayList<Member>();
+       
+        
+        try
+        {
+            databaseManager = DatabaseManager.newInstance();
+
+            databaseManager.prepare("SELECT * FROM member_info");
+            ResultSet rs = databaseManager.executeQuery();
+         
+            while(rs.next())
+            {
+                Member member = new Member();
+                member.setId(rs.getInt("id"));
+                member.setUsername(rs.getString("user_name"));
+                member.setPassword(rs.getString("password"));
+                member.setSex(rs.getString("sex"));
+                member.setEmail(rs.getString("email"));
+                member.setTelephone(rs.getString("telephone"));
+                member.setAddress(rs.getString("address"));
+                memberList.add(member);
+            }
+        }catch(SQLException ex)
+        {
+            System.out.println("SQLExcepiton: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Vendor: " + ex.getErrorCode());
+            System.out.println("ERROR");
+        }finally
+        {
+            databaseManager.close();
+        }
+        return memberList;
     }
 }
