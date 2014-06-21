@@ -74,14 +74,7 @@ public class Order extends HttpServlet
         resp.setContentType("text/html");
         
         MemberDao memberDao = new MemberDao();
-        
-        for(Member member : memberDao.showMember())
-        {
-            resp.getWriter().println(member.getId());
-            resp.getWriter().println(member.getUsername());
-            resp.getWriter().println(member.getTelephone());
-            resp.getWriter().println(member.getAddress());
-            resp.getWriter().println(member.getSex());
-        }
+        req.setAttribute("memberList",memberDao.showMember());
+        forward(req,resp,"list");
     }
 }
