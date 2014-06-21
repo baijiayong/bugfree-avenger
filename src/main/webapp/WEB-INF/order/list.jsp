@@ -11,23 +11,25 @@ List<Member> memberList = (List<Member>) request.getAttribute("memberList");
     </head>
     <body>
         <h1>会员列表</h1>
-        <table border="1">
-            <tr>
-                <td>ID</td>
-                <td>UserName</td>
-                <td>Sex</td>
-                <td>Address</td>
-                <td>Telephone</td>
-            </tr>
-            <c:forEach var="member" items="${memberList}">
-            <tr>
-                <td>${member.id}</td>
-                <td>${member.username}</td>
-                <td>${member.sex}</td>
-                <td>${member.address}</td>
-                <td>${member.telephone}</td>
-            </tr>
-            </c:forEach>
-        </table>
+        <form action="order" method="POST">
+            <table border="1">
+                <tr>
+                    <td>ID</td>
+                    <td>UserName</td>
+                    <td>Sex</td>
+                    <td>Address</td>
+                    <td>Telephone</td>
+                </tr>
+                <c:forEach var="member" items="${memberList}">
+                <tr>
+                    <td><a href="?show&id=${member.id}">${member.id}</td>
+                    <td>${member.username}</td>
+                    <td>${member.sex}</td>
+                    <td>${member.address}</td>
+                    <td>${member.telephone}</td>
+                </tr>
+                </c:forEach>
+            </table>
+        </form>
     </body>
 </html>
