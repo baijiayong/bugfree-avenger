@@ -21,7 +21,7 @@ public class Order extends HttpServlet
         if("List".equalsIgnoreCase(action))
         {
             list(req,resp);
-        }else if("show".equalsIgnoreCase(action))
+        }else if("Show".equalsIgnoreCase(action))
         {
             show(req,resp);
         }
@@ -79,5 +79,9 @@ public class Order extends HttpServlet
         MemberDao memberDao = new MemberDao();
         req.setAttribute("memberList",memberDao.showMember());
         forward(req,resp,"list");
+    }
+    public void show(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    {
+    
     }
 }

@@ -73,8 +73,8 @@ public class MemberDao
         }
         return memberList;
     }
-    public Member showMember()
+    public Member show()
     {
-        
+        return null;
     }
 }
