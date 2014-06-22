@@ -21,6 +21,9 @@ public class Order extends HttpServlet
         if("List".equalsIgnoreCase(action))
         {
             list(req,resp);
+        }else if("show".equalsIgnoreCase(action))
+        {
+            show(req,resp);
         }
     }
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
