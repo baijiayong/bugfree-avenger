@@ -82,6 +82,11 @@ public class Order extends HttpServlet
     }
     public void show(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
-    
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html");
+        
+        MemberDao memberDao = new MemberDao();
+        req.setAttribute("member",memberDao.show());
+        forward(req,resp,"show");
     }
 }
