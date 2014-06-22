@@ -73,8 +73,33 @@ public class MemberDao
         }
         return memberList;
     }
-    public Member show()
+    public Member show(Member member)
     {
-        return null;
+        DatabaseManager databaseManager = null;
+        
+        try
+        {
+            databaseManager = DatabaseManager.newInstance();
+            databaseManager.prepare("SELECT * FROM member_info WHERE id=" + member.getId());
+            System.out.println(member.getId());
+            ResultSet rs = databaseManager.executeQuery();
+            while(rs.next())
+            {
+                member.setUsername(rs.getString("user_name"));
+                member.setAddress(rs.getString("address"));
+                member.setTelephone(rs.getString("telephone"));
+                member.setSex(rs.getString("sex"));
+            }
+        }catch(SQLException ex)
+        {
+            System.out.println("SQLExcepition: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Vendor: " + ex.getErrorCode());
+            System.out.println("Error");
+        }finally
+        {
+            databaseManager.close();
+        }
+        return member;
     }
 }
