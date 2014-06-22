@@ -22,7 +22,7 @@ List<Member> memberList = (List<Member>) request.getAttribute("memberList");
                 </tr>
                 <c:forEach var="member" items="${memberList}">
                 <tr>
-                    <td><a href="?show&id=${member.id}">${member.id}</td>
+                    <td><a href="?action=Show&id=${member.id}">${member.id}</td>
                     <td>${member.username}</td>
                     <td>${member.sex}</td>
                     <td>${member.address}</td>
