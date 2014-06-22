@@ -17,13 +17,17 @@ public class Order extends HttpServlet
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
         String action = req.getParameter("action");
+        String id = req.getParameter("id");
+        
+        Member member = new Member();
         
         if("List".equalsIgnoreCase(action))
         {
             list(req,resp);
         }else if("Show".equalsIgnoreCase(action))
-        {
-            show(req,resp);
+        {   
+            member.setId(Integer.valueOf(id));
+            show(req,resp,member);
         }
     }
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -80,13 +84,13 @@ public class Order extends HttpServlet
         req.setAttribute("memberList",memberDao.showMember());
         forward(req,resp,"list");
     }
-    public void show(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    public void show(HttpServletRequest req, HttpServletResponse resp,Member member) throws ServletException, IOException
     {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html");
-        
+       
         MemberDao memberDao = new MemberDao();
-        req.setAttribute("member",memberDao.show());
+        req.setAttribute("member",memberDao.show(member));
         forward(req,resp,"show");
     }
 }
