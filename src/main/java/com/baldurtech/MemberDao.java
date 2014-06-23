@@ -92,9 +92,31 @@ public class MemberDao
             }
         }catch(SQLException ex)
         {
-            System.out.println("SQLExcepition: " + ex.getMessage());
+            System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("Vendor: " + ex.getErrorCode());
+            System.out.println("Error");
+        }finally
+        {
+            databaseManager.close();
+        }
+        return member;
+    }
+    public Member delete(Member member)
+    {
+        DatabaseManager databaseManager = null;
+        
+        try
+        {
+            databaseManager = DatabaseManager.newInstance();
+            databaseManager.prepare("DELETE FROM member_info WHERE id=" + member.getId());
+            System.out.println(member.getId());
+            databaseManager.execute();
+        }catch(SQLException ex)
+        {
+            System.out.println("SQLException:" + ex.getMessage());
+            System.out.println("SQLState:" + ex.getSQLState());
+            System.out.println("Vendor:" + ex.getErrorCode());
             System.out.println("Error");
         }finally
         {
