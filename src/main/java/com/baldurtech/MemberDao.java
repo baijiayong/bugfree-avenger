@@ -81,7 +81,6 @@ public class MemberDao
         {
             databaseManager = DatabaseManager.newInstance();
             databaseManager.prepare("SELECT * FROM member_info WHERE id=" + member.getId());
-            System.out.println(member.getId());
             ResultSet rs = databaseManager.executeQuery();
             while(rs.next())
             {
@@ -110,7 +109,6 @@ public class MemberDao
         {
             databaseManager = DatabaseManager.newInstance();
             databaseManager.prepare("DELETE FROM member_info WHERE id=" + member.getId());
-            System.out.println(member.getId());
             databaseManager.execute();
         }catch(SQLException ex)
         {
