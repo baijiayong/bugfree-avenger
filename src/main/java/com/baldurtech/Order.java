@@ -33,6 +33,8 @@ public class Order extends HttpServlet
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
         String action = req.getParameter("action");
+        String id = req.getParameter("id");
+        System.out.println(id);
 
         if("register".equalsIgnoreCase(action))
         {   
@@ -41,6 +43,13 @@ public class Order extends HttpServlet
         else if("doRegister".equalsIgnoreCase(action))
         {
             doRegister(req,resp);
+        }
+        else if("Delete".equalsIgnoreCase(action))
+        {
+            Member member = new Member();
+            member.setId(Integer.valueOf(id));
+            System.out.println(member.getId());
+            delete(req,resp,member);
         }
 
     }
@@ -83,6 +92,15 @@ public class Order extends HttpServlet
         MemberDao memberDao = new MemberDao();
         req.setAttribute("memberList",memberDao.showMember());
         forward(req,resp,"list");
+    }
+    public void delete(HttpServletRequest req, HttpServletResponse resp,Member member) throws ServletException, IOException
+    {
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html");
+        
+        MemberDao memberDao = new MemberDao();
+        memberDao.delete(member);
+        forward(req,resp,"delete");
     }
     public void show(HttpServletRequest req, HttpServletResponse resp,Member member) throws ServletException, IOException
     {
