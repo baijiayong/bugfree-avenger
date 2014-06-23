@@ -10,21 +10,26 @@
     </head>
     <body>
         <h1>个人信息</h1>
-        <table border="1">
-            <tr>
-                <td>ID</td>
-                <td>Username</td>
-                <td>Sex</td>
-                <td>Address</td>
-                <td>Telephone</td>
-            </tr>
-            <tr>
-                <td><%=member.getId()%></td>
-                <td><%=member.getUsername()%></td>
-                <td><%=member.getSex()%></td>
-                <td><%=member.getAddress()%></td>
-                <td><%=member.getTelephone()%></td>
-            </tr>
-        </table>
+        <form action="order" method="POST">
+            <table border="1">
+                <tr>
+                    <td>ID</td>
+                    <td>Username</td>
+                    <td>Sex</td>
+                    <td>Address</td>
+                    <td>Telephone</td>
+                </tr>
+                <tr>
+                    <td><%=member.getId()%></td>
+                    <td><%=member.getUsername()%></td>
+                    <td><%=member.getSex()%></td>
+                    <td><%=member.getAddress()%></td>
+                    <td><%=member.getTelephone()%></td>
+                </tr>
+            </table>
+            <input type="submit" value="Delete" name="action"/>
+            <input type="submit" value="Update" name="action"/>
+            <input type="hidden" value="<%=member.getId()%>" name="id"/>
+        </form>
     </body>
 </html>
