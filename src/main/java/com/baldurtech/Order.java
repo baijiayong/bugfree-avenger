@@ -98,6 +98,7 @@ public class Order extends HttpServlet
         
         MemberDao memberDao = new MemberDao();
         memberDao.delete(member);
+        req.setAttribute("member",member);
         forward(req,resp,"deleteSuccess");
     }
     public void show(HttpServletRequest req, HttpServletResponse resp,Member member) throws ServletException, IOException
