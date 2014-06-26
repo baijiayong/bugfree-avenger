@@ -21,10 +21,10 @@
                 </tr>
                 <tr>
                     <td><%=member.getId()%></td>
-                    <td><%=member.getUsername()%></td>
-                    <td><%=member.getSex()%></td>
-                    <td><%=member.getAddress()%></td>
-                    <td><%=member.getTelephone()%></td>
+                    <td><input type="text" name="user_name" value="<%=member.getUsername()%>"/></td>
+                    <td><input type="text" name="sex" value="<%=member.getSex()%>"/></td>
+                    <td><input type="text" name="address" value="<%=member.getAddress()%>"/></td>
+                    <td><input type="text" name="telephone" value="<%=member.getTelephone()%>"></td>
                 </tr>
             </table>
             <input type="submit" value="Delete" name="action"/>
