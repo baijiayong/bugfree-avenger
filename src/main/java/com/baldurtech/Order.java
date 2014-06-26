@@ -34,6 +34,7 @@ public class Order extends HttpServlet
     {
         String action = req.getParameter("action");
         String id = req.getParameter("id");
+       
 
         if("register".equalsIgnoreCase(action))
         {   
@@ -48,6 +49,9 @@ public class Order extends HttpServlet
             Member member = new Member();
             member.setId(Integer.valueOf(id));
             delete(req,resp,member);
+        }else if("Update".equalsIgnoreCase(action))
+        {
+            update(req,resp);
         }
 
     }
@@ -109,5 +113,32 @@ public class Order extends HttpServlet
         MemberDao memberDao = new MemberDao();
         req.setAttribute("member",memberDao.show(member));
         forward(req,resp,"show");
+    }
+    public void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    {
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html");
+        
+        String id = req.getParameter("id");
+        String username = req.getParameter("user_name");
+        String password = req.getParameter("pass_word");
+        String sex = req.getParameter("sex");
+        String email = req.getParameter("email");
+        String telephone = req.getParameter("telephone");
+        String address = req.getParameter("address");
+       
+        Member member = new Member();
+        member.setId(Integer.valueOf(id));
+        member.setUsername(username);
+        member.setPassword(password);
+        member.setSex(sex);
+        member.setEmail(email);
+        member.setTelephone(telephone);
+        member.setAddress(address);
+        
+        MemberDao memberDao = new MemberDao();
+        memberDao.update(member);
+        req.setAttribute("member",member);
+        forward(req,resp,"updateSuccess");
     }
 }
