@@ -122,4 +122,30 @@ public class MemberDao
         }
         return member;
     }
+    public void update(Member member)
+    {
+        DatabaseManager databaseManager = null;
+        
+        try
+        {
+            databaseManager = DatabaseManager.newInstance();
+            databaseManager.prepare("UPDATE member_info SET user_name = ?,sex = ?,email = ?,telephone = ?,address = ? WHERE id =" + member.getId());
+            databaseManager.setString(member.getUsername());
+            databaseManager.setString(member.getSex());
+            databaseManager.setString(member.getEmail());
+            databaseManager.setString(member.getTelephone());
+            databaseManager.setString(member.getAddress());
+            databaseManager.execute();
+        }catch(SQLException ex)
+        {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Vendor: " + ex.getErrorCode());
+            System.out.println("Error");
+        }finally
+        {
+            databaseManager.close();
+        }
+    }
+       
 }
